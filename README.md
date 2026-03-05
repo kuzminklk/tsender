@@ -10,6 +10,7 @@ TypeScript, Next.js (React Framework), Rainbow Kit (For Wallet connection), Wagm
 
 ### Development Path
 1. Develop core functionality and UI during course (1–13 lessons)
+2. Do visual redesign inspired by gas.zip, using GitHub Copilot (Claude Haiky 4.5)
 
 ### Additional
 «tsender-deployed.json» — Anvil blockchain state with predeployed TSender smart-contract
