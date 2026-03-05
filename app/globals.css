@@ -1,104 +1,307 @@
 
-
 /* I use globals styles for all the project styles */
-
+/* Old Windows 95/98 Theme */
 
 /* General */
 
 :root {
-  --background: #ffffff;
-	--foreground: #000000;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #ffffff;
-  }
+  /* Classic Windows colors */
+  --windows-gray: #c0c0c0;
+  --windows-dark-gray: #808080;
+  --windows-light-gray: #dfdfdf;
+  --windows-highlight: #ffffff;
+  --windows-shadow: #808080;
+  --windows-dark-shadow: #000000;
+  --windows-face: #c0c0c0;
+  --windows-text: #000000;
+  --windows-title-bg: linear-gradient(to right, #000080, #1084d7);
+  --windows-title-text: #ffffff;
+  
+  --background: #008080;
+  --foreground: #000000;
 }
 
 body {
   background: var(--background);
-	color: var(--foreground);
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-
-	font-size: calc(2vh + 9px);
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.05) 2px,
+      rgba(255, 255, 255, 0.05) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.05) 2px,
+      rgba(255, 255, 255, 0.05) 4px
+    );
+  color: var(--windows-text);
+  font-family: "MS Sans Serif", Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 11px;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-
-/* Header */
+/* Header / Title Bar */
 
 header {
   display: flex;
   align-items: center;
   align-content: center;
   justify-content: space-between;
-	height: 3rem;
-	background-color: var(--foreground);
-	color:  var(--background);
 
-	padding: 0.5rem 2rem;
+  height: 2rem;
+  padding: 0.25rem 0.5rem;
+
+  background: var(--windows-title-bg);
+  color: var(--windows-title-text);
+  
+  border-top: 2px solid var(--windows-highlight);
+  border-left: 2px solid var(--windows-highlight);
+  border-right: 2px solid var(--windows-shadow);
+  border-bottom: 2px solid var(--windows-shadow);
+
+  font-weight: bold;
+  font-size: 12px;
+  flex-shrink: 0;
 }
 
+header h2 {
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
 
-/* Form */
+header > div {
+  display: flex;
+  align-items: center;
+}
+
+main {
+  flex: 1;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* Window Frame / Form Section */
 
 .formSection {
-	margin: 2rem;
-	padding: 1.5rem;
-	border: 0.25rem solid var(--foreground);
-	border-radius: 0.5rem;
+  width: 100%;
+  max-width: 600px;
+  background: var(--windows-gray);
+  border-top: 2px solid var(--windows-light-gray);
+  border-left: 2px solid var(--windows-light-gray);
+  border-right: 2px solid var(--windows-shadow);
+  border-bottom: 2px solid var(--windows-shadow);
+  box-shadow: 
+    inset 1px 1px 0 var(--windows-highlight),
+    inset -1px -1px 0 var(--windows-dark-shadow);
+  padding: 3px;
+}
+
+.formSection-title {
+  background: var(--windows-title-bg);
+  color: var(--windows-title-text);
+  padding: 2px 2px;
+  margin: -3px -3px 8px -3px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  padding-left: 2px;
+  border-bottom: 2px solid var(--windows-shadow);
+  font-weight: bold;
+  font-size: 11px;
 }
 
 .formSection form {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-	gap: 2rem;
+	gap: 1rem;
+	padding: 0.5rem;
 }
 
 .formSection form div {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-evenly;
-	gap: 0.5rem;
+	gap: 1rem;
 }
 
 .formSection form div div {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-	gap: 1.5rem;
+	gap: 0.75rem;
+	flex: 1;
+}
+
+.formSection label {
+  display: block;
+  font-size: 11px;
+  font-weight: normal;
+  margin-bottom: 2px;
+  color: var(--windows-text);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.formSection textarea,
+.formSection input {
+  background: var(--windows-face);
+  color: var(--windows-text);
+  border-top: 2px solid var(--windows-shadow);
+  border-left: 2px solid var(--windows-shadow);
+  border-right: 2px solid var(--windows-highlight);
+  border-bottom: 2px solid var(--windows-highlight);
+  padding: 2px;
+  font-family: "MS Sans Serif", Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 11px;
+  box-sizing: border-box;
 }
 
 .formSection textarea {
-	width: 20rem;
-	height: 4rem;
-	padding: 0.25rem;
-	border-bottom: 0.25rem solid rgb(24, 113, 255);
-	border-radius: 0.5rem;
+	width: 100%;
+	min-height: 60px;
+	resize: vertical;
 }
 
 .formSection input {
-	padding: 0.25rem;
-	border-radius: 0.5rem;
-	border-bottom: 0.25rem solid rgb(24, 113, 255);
+	width: 100%;
+	height: 20px;
+}
+
+.formSection textarea:focus,
+.formSection input:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--windows-text);
 }
 
 .formSection button {
-		padding: 0.5rem;
-	border-radius: 0.5rem;
-	border: 0.25rem solid rgb(24, 113, 255);
-
-	font-size: 1.25rem;
-
-	transition: all 0.1s ease-out ;
+	background: var(--windows-gray);
+	border-top: 2px solid var(--windows-highlight);
+	border-left: 2px solid var(--windows-highlight);
+	border-right: 2px solid var(--windows-shadow);
+	border-bottom: 2px solid var(--windows-shadow);
+	color: var(--windows-text);
+	padding: 4px 12px;
+	font-family: "MS Sans Serif", Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	cursor: pointer;
+	-webkit-user-select: none;
+	user-select: none;
+	display: inline-block;
+	min-width: 75px;
+	text-align: center;
+	transition: none;
 }
 
-.formSection button:hover, .formSection button:focus {
-	transform: translateY(0.25rem);
+.formSection button:hover {
+	background: var(--windows-light-gray);
 }
 
 .formSection button:active {
-	transform: translateY(-0.25rem);
+	border-top: 2px solid var(--windows-shadow);
+	border-left: 2px solid var(--windows-shadow);
+	border-right: 2px solid var(--windows-highlight);
+	border-bottom: 2px solid var(--windows-highlight);
+}
+
+.formSection button:disabled {
+	color: var(--windows-dark-gray);
+	text-shadow: 1px 1px 0 var(--windows-highlight);
+	cursor: not-allowed;
+}
+
+/* Status Bar */
+
+.statusBar {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--windows-gray);
+  border-top: 2px solid var(--windows-highlight);
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid var(--windows-shadow);
+  font-size: 11px;
+  min-height: 22px;
+  align-items: center;
+}
+
+.statusBar-field {
+  flex: 1;
+  border-left: 2px solid var(--windows-shadow);
+  border-top: 2px solid var(--windows-shadow);
+  border-right: 2px solid var(--windows-highlight);
+  border-bottom: 2px solid var(--windows-highlight);
+  padding: 2px 4px;
+  display: flex;
+  align-items: center;
+}
+
+/* Input Group Container */
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Button Group Container */
+
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+/* Total Display */
+
+.totalDisplay {
+  background: var(--windows-face);
+  border-top: 2px solid var(--windows-shadow);
+  border-left: 2px solid var(--windows-shadow);
+  border-right: 2px solid var(--windows-highlight);
+  border-bottom: 2px solid var(--windows-highlight);
+  padding: 4px;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: var(--windows-text);
+  word-break: break-all;
+}
+
+/* Rainbow Kit Overrides */
+
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--windows-gray);
+  border-left: 2px solid var(--windows-highlight);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--windows-gray);
+  border-top: 2px solid var(--windows-highlight);
+  border-left: 2px solid var(--windows-highlight);
+  border-right: 2px solid var(--windows-shadow);
+  border-bottom: 2px solid var(--windows-shadow);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--windows-gray);
 }

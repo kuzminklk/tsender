@@ -6,7 +6,7 @@
 "use client"
 
 
-import { SubmitEventHandler, useState, useMemo } from "react"
+import { useState, useMemo } from "react"
 import { useChainId, useConfig, useAccount, useWriteContract } from "wagmi"
 import { readContract, waitForTransactionReceipt } from "@wagmi/core"
 
@@ -17,7 +17,7 @@ import { chainsToTSender, tsenderAbi, erc20Abi } from "@/app/lib/constants";
 // Form component
 export function Form() {
 
-	const [tokenAddress, setTokenAddress] = useState<`0x${string}`>("0x");
+	const [tokenAddress, setTokenAddress] = useState<string>("0x");
 	const [recepients, setRecepients] = useState<string>("");
 	const [amounts, setAmounts] = useState<string>("");
 
@@ -39,7 +39,7 @@ export function Form() {
 		if (approvedAmout < Number(total)) {
 			const approvalHash = await writeContractAsync({
 				abi: erc20Abi,
-				address: tokenAddress as `0x${string}`,
+				address: tokenAddress,
 				functionName: "approve",
 				args: [tSenderAddress, BigInt(total)]
 			})
@@ -59,7 +59,7 @@ export function Form() {
 			address: tSenderAddress,
 			functionName: "airdropERC20",
 			args: [
-				tokenAddress as `0x${string}`,
+				tokenAddress,
 				recepients.split(/[,\n]+/).map(address => address.trim()).filter(address => address !== ""),
 				amounts.split(/[,\n]+/).map(address => address.trim()).filter(address => address !== ""),
 				BigInt(total)
@@ -82,7 +82,7 @@ export function Form() {
 		// Read data from blockchain
 		const response = await readContract(config, {
 			abi: erc20Abi,
-			address: tokenAddress as `0x${string}`,
+			address: tokenAddress,
 			functionName: "allowance",
 			args: [account.address, tSenderAddress]
 		})
@@ -93,24 +93,50 @@ export function Form() {
 
 	return (
 		<section className="formSection">
+			<div className="formSection-title">
+				TSender.exe
+			</div>
 			<form onSubmit={handleSubmit}>
 				<div>
 					<div>
+						<div className="input-group">
 							<label htmlFor="tokenAddress">Token Address:</label>
-							<label htmlFor="recepients">Recepients Addresses: <br />(comma or new line separated)</label>
-							<label htmlFor="amounts">Amounts: <br />(wei; comma or new line separated)</label>
+							<input type="text" placeholder="0x…" id="tokenAddress" value={ tokenAddress } onChange={(event) => { setTokenAddress(event.target.value) }}></input>
+						</div>
+						<div className="input-group">
+							<label htmlFor="recepients">Recipients (comma or new line separated):</label>
+							<textarea placeholder="0x123…, 0x456…" id="recepients" value={ recepients } onChange={(event) => { setRecepients(event.target.value) }}></textarea>
 						</div>
 					</div>
 
 					<div>
-						<input type="text" placeholder="0x…" id="tokenAddress" value={ tokenAddress } onChange={(event) => { setTokenAddress(event.target.value) }}></input>
-						<textarea placeholder="0x123…, 0x456…" id="recepients" value={ recepients } onChange={(event) => { setRecepients(event.target.value) }}></textarea>
-						<textarea placeholder="1000, 2000" id="amounts" value={ amounts } onChange={(event) => { setAmounts(event.target.value) }}></textarea>
+						<div className="input-group">
+							<label htmlFor="amounts">Amounts (wei; comma or new line separated):</label>
+							<textarea placeholder="1000, 2000" id="amounts" value={ amounts } onChange={(event) => { setAmounts(event.target.value) }}></textarea>
+						</div>
+						<div className="input-group">
+							<label>Total Amount:</label>
+							<div className="totalDisplay">
+								{total || "0"}
+							</div>
+						</div>
 					</div>	
-
+				</div>
+				<div className="button-group">
 					<button type="submit" disabled={isPending}>
 						{isPending ? "Sending..." : "Send Tokens"}
 					</button>
+					<button type="button" onClick={() => window.location.reload()}>
+						Exit
+					</button>
+				</div>
+				{hash && (
+					<div className="statusBar">
+						<div className="statusBar-field">
+							✓ TxHash: {hash.substring(0, 10)}...
+						</div>
+					</div>
+				)}
 			</form>
 		</section>
 	)
