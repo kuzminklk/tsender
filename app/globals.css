@@ -1,0 +1,104 @@
+
+
+/* I use globals styles for all the project styles */
+
+
+/* General */
+
+:root {
+  --background: #ffffff;
+	--foreground: #000000;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #000000;
+    --foreground: #ffffff;
+  }
+}
+
+body {
+  background: var(--background);
+	color: var(--foreground);
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+
+	font-size: calc(2vh + 9px);
+}
+
+
+/* Header */
+
+header {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: space-between;
+	height: 3rem;
+	background-color: var(--foreground);
+	color:  var(--background);
+
+	padding: 0.5rem 2rem;
+}
+
+
+/* Form */
+
+.formSection {
+	margin: 2rem;
+	padding: 1.5rem;
+	border: 0.25rem solid var(--foreground);
+	border-radius: 0.5rem;
+}
+
+.formSection form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	gap: 2rem;
+}
+
+.formSection form div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	gap: 0.5rem;
+}
+
+.formSection form div div {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	gap: 1.5rem;
+}
+
+.formSection textarea {
+	width: 20rem;
+	height: 4rem;
+	padding: 0.25rem;
+	border-bottom: 0.25rem solid rgb(24, 113, 255);
+	border-radius: 0.5rem;
+}
+
+.formSection input {
+	padding: 0.25rem;
+	border-radius: 0.5rem;
+	border-bottom: 0.25rem solid rgb(24, 113, 255);
+}
+
+.formSection button {
+		padding: 0.5rem;
+	border-radius: 0.5rem;
+	border: 0.25rem solid rgb(24, 113, 255);
+
+	font-size: 1.25rem;
+
+	transition: all 0.1s ease-out ;
+}
+
+.formSection button:hover, .formSection button:focus {
+	transform: translateY(0.25rem);
+}
+
+.formSection button:active {
+	transform: translateY(-0.25rem);
+}
