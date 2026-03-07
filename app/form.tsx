@@ -117,6 +117,7 @@ export function Form() {
 }
 
 
+
 // Calculate total amounts
 export function calculateTotal(amounts: string): string {
 	// Parse text

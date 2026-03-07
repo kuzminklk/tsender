@@ -22,13 +22,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-		<Providers>
 			<html lang="en">
-				<body>
-					<Header />
-					{children}
-				</body>
+					<body>
+						<Providers>
+							<Header />
+							{children}
+						</Providers>
+					</body>
 			</html>
-		</Providers>
   );
 }

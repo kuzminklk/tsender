@@ -3,13 +3,16 @@
 /* Index page with form */
 
 
-import { Form } from "@/app/form"
+import { useAccount } from "wagmi";
+
+import { Connection } from "@/app/connection";
 
 
 export default function Home() {
+
   return (
     <main>
-			<Form/>
+			<Connection/>
 		</main>
   );
 }
