@@ -3,102 +3,366 @@
 /* I use globals styles for all the project styles */
 
 
+/* 
+	Structure
+		General
+
+*/
+
+
 /* General */
 
 :root {
-  --background: #ffffff;
-	--foreground: #000000;
+	--background-primary: #ffffff;
+	--background-secondary: #f8f9fa;
+	--text-primary: #0f1419;
+	--text-secondary: #6a737d;
+	--border: #e1e4e8;
+	--accent: #1f6feb;
+	--accent-hover: #388bfd;
+	--error: #d1242f;
+	--success: #1a7f37;
+	--warning: #9e6a03;
+
+	--shadow: rgba(0, 0, 0, 0.1);
+
+	--radius: 1rem;
+	--radius-small: 0.75rem;
+	--radius-large: 1.25rem;
+	--transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1)
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #000000;
-    --foreground: #ffffff;
-  }
+	:root {
+		--background-primary: #0d1117;
+    --background-secondary: #161b22;
+    --text-primary: #c9d1d9;
+    --text-secondary: #8b949e;
+    --border: #30363d;
+    --accent: #58a6ff;
+    --accent-hover: #79c0ff;
+    --error: #f85149;
+    --success: #3fb950;
+    --warning: #d29922;
+	}
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
 }
 
 body {
-  background: var(--background);
-	color: var(--foreground);
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+	background: var(--background-primary);
+	color: var(--text-primary);
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
 
 	font-size: calc(2vh + 9px);
+	line-height: 1.6;
+	transition: background 0.3s ease, color 0.3s ease;
 }
 
 
 /* Header */
 
 header {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  justify-content: space-between;
-	height: 3rem;
-	background-color: var(--foreground);
-	color:  var(--background);
+	position: sticky;
+	top: 0;
+	z-index: 100;
 
-	padding: 0.5rem 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	padding: 1rem 2rem;
+
+	background: color-mix(in srgb, var(--background-secondary), transparent 50%);
+	border-bottom: 1px solid var(--border);
+
+	-webkit-backdrop-filter: blur(0.5rem);
+	backdrop-filter: blur(0.5rem);
+}
+
+header h2 {
+	font-size: 1.6rem;
+	font-weight: 600;
+	letter-spacing: -0.125rem;
 }
 
 
-/* Form */
+/* Main Layout */
 
-.formSection {
-	margin: 2rem;
-	padding: 1.5rem;
-	border: 0.25rem solid var(--foreground);
-	border-radius: 0.5rem;
+main {
+	min-height: calc(100vh - 4rem);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem 1rem;
 }
 
-.formSection form {
+
+/* Connection Alert */
+
+.connection-alert {
+	font-size: 1.4rem;
+	text-align: center;
+	color: var(--text-secondary);
+	animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-0.5rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+
+
+/* ——— Form ——— */
+
+form {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
 	gap: 2rem;
+
+	width: 100%;
+	max-width: 50rem;
+
+	background: var(--background-secondary);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-large);
+
+	padding: 	3rem;
+
+	box-shadow: 0 0.1rem 0.2rem var(--shadow);
 }
 
-.formSection form div {
+form section {
 	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
+	flex-direction: column;
+	gap: 1.5rem;
+	padding: 1.5rem;
+	background: var(--background-primary);
+	border: 0.25rem solid var(--border);
+	border-radius: var(--radius);
+}
+
+/* Labels */
+
+label {
+	font-size: 1rem;
+	font-weight: 600;
+	color: var(--text-primary);
+	text-transform: uppercase;
+	letter-spacing: 0.1rem;
+}
+
+/* Inputs, Textareas */
+
+input, textarea {
+	padding: 0.875rem 1rem;
+	background: var(--background-primary);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-small);
+	color: var(--text-primary);
+	font-family: inherit;
+	font-size: 0.875rem;
+	transition: var(--transition);
+	outline: none;
+}
+
+input:focus, textarea:focus {
+	border-color: var(--accent);
+	box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.1);
+	background: var(--background-primary);
+	outline: none;
+}
+
+textarea {
+	resize: vertical;
+	min-height: 8rem;
+	font-family: "Menlo", "Monaco", "Courier New", monospace;
+	font-size: 0.825rem;
+}
+
+
+
+/* ——— Error Messages ——— */
+
+/* Inputs */
+
+.inputError {
+	border-color: var(--error);
+}
+
+.inputError:focus {
+	box-shadow: 0 0 0 3px var(--shadow);
+}
+
+/* Messages */
+
+.errorList {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+	padding: 0;
+	list-style: none;
+}
+
+.errorItem {
+	font-size: 0.75rem;
+	color: var(--error);
+	display:flex;
+	align-items:center;
 	gap: 0.5rem;
 }
 
-.formSection form div div {
+.errorItem::before {
+	content: "⚠";
+	font-size: 1rem;
+}
+
+
+/* Success messages */
+
+.successMessage {
+	padding: 1rem;
+	background:  rgba(31, 175, 55, 0.1);
+	border: 1px solid var(--success);
+	border-radius: var(--radius-small);
+	color: var(--success);
+	font-size: 0.915rem;
 	display: flex;
-	flex-direction: column;
-	justify-content: space-evenly;
-	gap: 1.5rem;
+	align-items: center;
+	gap: 0.5rem;
 }
 
-.formSection textarea {
-	width: 20rem;
-	height: 4rem;
-	padding: 0.25rem;
-	border-bottom: 0.25rem solid rgb(24, 113, 255);
-	border-radius: 0.5rem;
+.successMessage::before {
+	content: "✓";
+	font-weight: 800;
+	font-size: 1.125rem;
 }
 
-.formSection input {
-	padding: 0.25rem;
-	border-radius: 0.5rem;
-	border-bottom: 0.25rem solid rgb(24, 113, 255);
+
+/* Button */
+
+button {	
+	padding: 0.875rem 1.5rem;
+	background: var(--accent);
+	color: white;
+	border: none;
+	border-radius: var(--radius-small);
+	font-size: 0.915rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: var(--transition);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	white-space: nowrap;
 }
 
-.formSection button {
-		padding: 0.5rem;
-	border-radius: 0.5rem;
-	border: 0.25rem solid rgb(24, 113, 255);
-
-	font-size: 1.25rem;
-
-	transition: all 0.1s ease-out ;
+button:hover:not(:disabled) {
+	background: var(--accent-hover);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px rgba(31, 111, 235, 0.3);
 }
 
-.formSection button:hover, .formSection button:focus {
-	transform: translateY(0.25rem);
+button:active:not(:disabled) {
+	transform: translateY(0);
 }
 
-.formSection button:active {
-	transform: translateY(-0.25rem);
+button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+
+/* Total Display */
+
+.totalDisplay {
+	padding: 1rem;
+	background: var(--background-primary);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-small);
+	text-align: center;
+}
+
+.totalDisplay p {
+	font-size: 0.65rem;
+	color: var(--text-secondary);
+	margin-bottom: 0.25rem;
+}
+
+.totalDisplay .amount {
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--accent);
+	font-family: "Menlo", "Monaco", monospace;
+	word-break: break-all;
+}
+
+
+/* Mobile Responsiveness */
+
+@media (max-width: 640px) {
+	header {
+		padding: 1rem;
+	}
+
+	header h2 {
+		font-size: 1.4rem;
+	}
+
+	main {
+		padding: 1rem 0.5rem;
+	}
+
+	form {
+		padding: 2rem 1.5rem;
+		gap: 1.5rem;
+	}
+
+	form section {
+		padding: 1rem;
+	}
+
+	label {
+		font-size: 0.75rem;
+	}
+
+	input, textarea {
+		font-size: 1rem;
+	}
+
+	textarea {
+		min-height: 5rem
+	}
+
+	button {
+		width: 100%;
+	}
+}
+
+@media (max-width: 480px) {
+	form {
+		padding: 	1.5rem 1rem;
+	}
+
+	.totalDisplay .amount {
+		font-size: 1.15rem;
+	}
 }
