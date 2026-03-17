@@ -7,8 +7,9 @@ import type { Metadata } from "next";
 
 import { Providers } from "@/app/providers"
 import { Header } from "@/app/header";
+import { Footer } from "./footer";
 
-import "./globals.css";
+import "./mobile.css";
 
 
 export const metadata: Metadata = {
@@ -27,6 +28,7 @@ export default function RootLayout({
 						<Providers>
 							<Header />
 							{children}
+							<Footer />
 						</Providers>
 					</body>
 			</html>
