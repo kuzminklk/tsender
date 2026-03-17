@@ -13,7 +13,7 @@ TypeScript, Next.js (React Framework), Rainbow Kit (For Wallet connection), Wagm
 2. Do visual redesign inspired by gas.zip, using GitHub Copilot Agent mode (Claude Haiky 4.5) (old-windows)
 3. Develop validation, improve logic, using GitHub Copilot Ask mode (main)
 4. Do visual redisign, using GitHub Copilot Ask mode
-5. Do visual redisign from blank, by hands
+5. Do visual redisign from blank, by myself
 
 ### Branches
 - main
