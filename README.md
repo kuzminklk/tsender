@@ -11,7 +11,7 @@ TypeScript, Next.js (React Framework), Rainbow Kit (For Wallet connection), Wagm
 
 
 ### Status
-Finished, deployed at Vercel
+Finished, deployed [at Vercel](https://tsender-taupe.vercel.app/)
 
 ### Development Path
 1. Develop core functionality and UI during course (1–13 lessons)
@@ -30,3 +30,6 @@ Appropriate commands in ```./commands.sh```
 
 ### Additional
 «tsender-deployed.json» — Anvil blockchain state with predeployed TSender smart-contract
+
+### Deployments
+[At Vercel](https://tsender-taupe.vercel.app/)
