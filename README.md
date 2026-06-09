@@ -10,6 +10,9 @@ Part of Full-stack Web 3 course from Cyfrin Updraft and as submodule in [appropr
 TypeScript, Next.js (React Framework), Rainbow Kit (For Wallet connection), Wagmi (For interactions with smart contracts), React-Query, Vitest (Testing Framework)
 
 
+### Status
+Finished, deployed at Vercel
+
 ### Development Path
 1. Develop core functionality and UI during course (1–13 lessons)
 2. Do visual redesign inspired by gas.zip, using GitHub Copilot Agent mode (Claude Haiky 4.5) (old-windows)
