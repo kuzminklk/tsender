@@ -23,4 +23,7 @@ TypeScript, Next.js (React Framework), Rainbow Kit (For Wallet connection), Wagm
 
 
 ### Usage
+Appropriate commands in ```./commands.sh```  
+
+### Additional
 «tsender-deployed.json» — Anvil blockchain state with predeployed TSender smart-contract
