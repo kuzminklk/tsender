@@ -1,6 +1,4 @@
-
-
-export function Footer(){
+export function Footer() {
 	return (
 		<footer>
 			<h2>© 2026 by kuzminklk</h2>

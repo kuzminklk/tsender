@@ -1,16 +1,11 @@
-
-
 /* Index page with form */
 
-
-import { Connection } from "@/app/connection";
-
+import { Connection } from "@/app/connection"
 
 export default function Home() {
-
-  return (
-    <main>
-			<Connection/>
+	return (
+		<main>
+			<Connection />
 		</main>
-  );
+	)
 }

@@ -1,7 +1,4 @@
-
-
 /* Configuration for Rainbow Kit */
-
 
 "use client"
 
@@ -12,5 +9,5 @@ export default getDefaultConfig({
 	appName: "TSender",
 	projectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || "",
 	chains: [anvil, sepolia, zksync],
-	ssr: false
-}) 
+	ssr: false,
+})

@@ -1,12 +1,8 @@
-
-
 /* Vitest test for Form functionality testing */
-
 
 import { describe, expect, it } from "vitest"
 
 import { calculateTotal } from "@/app/form"
-
 
 describe("Calculate Total Amounts", () => {
 	it("Should handle basic cases", () => {
@@ -29,7 +25,7 @@ describe("Calculate Total Amounts", () => {
 	it("Should ignore invalid numbers", () => {
 		expect(calculateTotal("aaaaa,200")).toBe(200)
 		expect(calculateTotal("12sffds,200")).toBe(212)
-		expect(calculateTotal("100.10.30")).toBe(100.10)
+		expect(calculateTotal("100.10.30")).toBe(100.1)
 	})
 
 	it("Should ignore decimal numbers", () => {
